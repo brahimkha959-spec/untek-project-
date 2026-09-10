@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNTECK — Khalf Ibrahim Khalil</title>
+<link rel="icon" type="image/png" href="unteck.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0C10;
+    --surface:#12151B;
+    --surface-2:#1A1E26;
+    --border:#262B34;
+    --text:#EDEFF3;
+    --text-dim:#8891A0;
+    --accent:#FFB020;
+    --accent-ink:#1A1200;
+    --accent-2:#4FD1C5;
+    --shadow: 0 8px 30px rgba(0,0,0,.35);
+    --radius: 10px;
+    --maxw: 1180px;
+    --font-display: 'Space Grotesk', 'IBM Plex Sans Arabic', 'Noto Sans JP', sans-serif;
+    --font-body: 'IBM Plex Sans', 'IBM Plex Sans Arabic', 'Noto Sans JP', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+  html[data-theme="light"]{
+    --bg:#F5F6F3;
+    --surface:#FFFFFF;
+    --surface-2:#ECEEE9;
+    --border:#DBDFD8;
+    --text:#14171B;
+    --text-dim:#5B6470;
+    --accent:#D9800A;
+    --accent-ink:#FFFFFF;
+    --accent-2:#0E9C8F;
+    --shadow: 0 8px 24px rgba(20,23,27,.08);
+  }
+  html[lang="ar"]{ --font-display:'IBM Plex Sans Arabic','Space Grotesk',sans-serif; --font-body:'IBM Plex Sans Arabic',sans-serif; }
+  html[lang="ja"]{ --font-display:'Noto Sans JP','Space Grotesk',sans-serif; --font-body:'Noto Sans JP',sans-serif; }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; scroll-padding-top:84px; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } *{ animation-duration:.001ms !important; transition-duration:.001ms !important; } }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s cubic-bezier(.16,.8,.24,1), transform .7s cubic-bezier(.16,.8,.24,1); }
+  .reveal.in{ opacity:1; transform:none; }
+
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    transition: background .25s ease, color .25s ease;
+  }
+  h1,h2,h3,.display{ font-family:var(--font-display); letter-spacing:-0.01em; margin:0; }
+  a{ color:inherit; }
+  button{ font-family:inherit; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding-inline:24px; }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent); display:flex; align-items:center; gap:8px; margin-bottom:14px;
+  }
+  .eyebrow::before{ content:""; width:16px; height:1px; background:var(--accent); display:inline-block; }
+  html[dir="rtl"] .eyebrow::before{ order:2; }
+  section{ padding:88px 0; border-top:1px solid var(--border); }
+  section:first-of-type{ border-top:none; }
+  .icon{ width:18px; height:18px; stroke:currentColor; stroke-width:1.7; fill:none; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+
+  /* ---------- Header ---------- */
+  header.site-header{
+    position:sticky; top:0; z-index:40; background:color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter: blur(10px); border-bottom:1px solid var(--border);
+  }
+  .header-inner{ max-width:var(--maxw); margin:0 auto; padding:14px 24px; display:flex; align-items:center; gap:28px; }
+  .brand{ display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:19px; text-decoration:none; }
+  .brand-mark{
+    width:32px; height:32px; border-radius:8px; background:var(--accent); color:var(--accent-ink);
+    display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-weight:600; font-size:13px;
+  }
+  nav.main-nav{ display:flex; gap:4px; margin-inline-start:8px; }
+  nav.main-nav a{
+    position:relative; text-decoration:none; color:var(--text-dim); font-size:14.5px; font-weight:500; padding:8px 12px; border-radius:7px; transition:color .2s, background .2s;
+  }
+  nav.main-nav a:hover{ color:var(--text); background:var(--surface-2); }
+  nav.main-nav a::after{
+    content:""; position:absolute; left:12px; right:12px; bottom:2px; height:2px; background:var(--accent); border-radius:2px;
+    transform:scaleX(0); transform-origin:center; transition:transform .25s ease;
+  }
+  nav.main-nav a.active{ color:var(--text); }
+  nav.main-nav a.active::after{ transform:scaleX(1); }
+  .footer-nav a{ transition:color .2s; }
+  .footer-nav a.active{ color:var(--accent); }
+  .header-actions{ margin-inline-start:auto; display:flex; align-items:center; gap:6px; }
+  .icon-btn{
+    width:38px; height:38px; border-radius:8px; border:1px solid var(--border); background:var(--surface);
+    color:var(--text-dim); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:color .15s, border-color .15s;
+  }
+  .icon-btn:hover{ color:var(--text); border-color:var(--accent); }
+  .menu-toggle{ display:none; }
+
+  /* ---------- Drawer (Settings / area5) ---------- */
+  .scrim{ position:fixed; inset:0; background:rgba(0,0,0,.5); opacity:0; pointer-events:none; transition:opacity .2s; z-index:49; }
+  .scrim.open{ opacity:1; pointer-events:auto; }
+  .drawer{
+    position:fixed; top:0; bottom:0; inset-inline-end:0; width:min(360px,88vw); background:var(--surface);
+    border-inline-start:1px solid var(--border); z-index:50; transform:translateX(105%); transition:transform .28s ease; overflow-y:auto;
+  }
+  html[dir="rtl"] .drawer{ transform:translateX(-105%); }
+  .drawer.open{ transform:translateX(0); }
+  html[dir="rtl"] .drawer.open{ transform:translateX(0); }
+  .drawer-head{ display:flex; align-items:center; justify-content:space-between; padding:20px 22px; border-bottom:1px solid var(--border); }
+  .drawer-body{ padding:22px; display:flex; flex-direction:column; gap:26px; }
+  .drawer-section-title{ font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin-bottom:10px; }
+  .field{ display:flex; flex-direction:column; gap:6px; margin-bottom:10px; }
+  .field label{ font-size:13px; color:var(--text-dim); }
+  .field input{
+    background:var(--surface-2); border:1px solid var(--border); border-radius:7px; padding:9px 11px; color:var(--text); font-size:14px; font-family:inherit;
+  }
+  .field input:focus{ outline:2px solid var(--accent); outline-offset:1px; }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px; border-radius:8px; padding:10px 16px;
+    font-size:14px; font-weight:600; cursor:pointer; border:1px solid transparent; text-decoration:none; transition:transform .12s, filter .15s;
+  }
+  .btn:active{ transform:translateY(1px); }
+  .btn-solid{ background:var(--accent); color:var(--accent-ink); }
+  .btn-solid:hover{ filter:brightness(1.08); }
+  .btn-ghost{ background:transparent; border-color:var(--border); color:var(--text); }
+  .btn-ghost:hover{ border-color:var(--accent); }
+  .btn-block{ width:100%; }
+  .lang-list, .theme-list{ display:flex; flex-direction:column; gap:6px; }
+  .opt-row{
+    display:flex; align-items:center; justify-content:space-between; padding:10px 12px; border-radius:8px; border:1px solid var(--border);
+    background:var(--bg); cursor:pointer; font-size:14px; color:var(--text);
+  }
+  .opt-row[aria-pressed="true"]{ border-color:var(--accent); color:var(--accent); }
+  .opt-row .localized{ font-size:12px; color:var(--text-dim); font-family:var(--font-mono); }
+  .opt-row[aria-pressed="true"] .localized{ color:var(--accent); opacity:.8; }
+  .signed-in-note{ font-size:13px; color:var(--accent-2); font-family:var(--font-mono); }
+
+  /* ---------- Hero (area1) ---------- */
+  .hero{ padding-top:64px; padding-bottom:80px; border-top:none; }
+  .hero-top{ display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center; }
+  .hero h1{ font-size:clamp(34px,4.6vw,56px); line-height:1.06; margin-bottom:18px; }
+  .hero .lede{ color:var(--text-dim); font-size:17px; line-height:1.65; max-width:46ch; margin-bottom:28px; }
+  .hero-ctas{ display:flex; gap:12px; flex-wrap:wrap; }
+  .console{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);
+  }
+  .console-bar{ display:flex; gap:6px; padding:11px 14px; border-bottom:1px solid var(--border); background:var(--surface-2); }
+  .console-dot{ width:9px; height:9px; border-radius:50%; background:var(--border); }
+  .console-body{ padding:20px 18px; font-family:var(--font-mono); font-size:14.5px; min-height:150px; }
+  .console-line{ color:var(--text-dim); margin-bottom:8px; }
+  .console-line .p{ color:var(--accent); }
+  .console-cursor{ display:inline-block; width:8px; height:15px; background:var(--accent-2); margin-inline-start:2px; animation:blink 1s steps(1) infinite; vertical-align:middle; }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .console-note{ padding:0 18px 18px; color:var(--text-dim); font-size:13px; border-top:1px dashed var(--border); padding-top:14px; }
+
+  .shelf-label{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:18px; }
+  .shelf-label h3{ font-size:14px; text-transform:uppercase; letter-spacing:.08em; color:var(--text-dim); font-family:var(--font-mono); font-weight:500; }
+  .mini-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:56px; }
+  .mini-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:16px; text-decoration:none; color:var(--text);
+    transition:border-color .15s, transform .15s;
+  }
+  .mini-card:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .mini-cover{ height:64px; border-radius:7px; margin-bottom:12px; }
+  .mini-card h4{ font-size:15px; margin-bottom:4px; font-family:var(--font-display); }
+  .mini-card p{ font-size:12.5px; color:var(--text-dim); margin:0; line-height:1.5; }
+
+  .chip-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:56px; }
+  .chip{
+    font-family:var(--font-mono); font-size:12.5px; padding:6px 12px; border-radius:20px; border:1px solid var(--border); color:var(--text-dim); background:var(--surface);
+    text-decoration:none; transition:color .15s, border-color .15s;
+  }
+  .chip:hover{ color:var(--text); border-color:var(--accent-2); }
+  .guide-card{
+    margin-top:56px; border:1px dashed var(--border); border-radius:var(--radius); padding:20px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .soon-badge{ font-family:var(--font-mono); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:4px 10px; border-radius:20px; }
+
+  /* ---------- About (area2) ---------- */
+  .about-grid{ display:grid; grid-template-columns:280px 1fr; gap:56px; align-items:start; }
+  .avatar{
+    width:200px; height:200px; border-radius:16px; background:linear-gradient(160deg, var(--surface-2), var(--surface));
+    border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-family:var(--font-display);
+    font-size:56px; font-weight:700; color:var(--accent);
+  }
+  .about-name{ font-size:30px; margin-top:22px; margin-bottom:4px; }
+  .about-role{ color:var(--text-dim); font-family:var(--font-mono); font-size:13.5px; }
+  .about-bio{ font-size:16.5px; line-height:1.8; color:var(--text-dim); max-width:64ch; margin-bottom:30px; }
+  .about-bio strong{ color:var(--text); font-weight:600; }
+  .contact-row{ display:flex; gap:10px; flex-wrap:wrap; }
+  .contact-pill{
+    display:flex; align-items:center; gap:8px; border:1px solid var(--border); border-radius:9px; padding:10px 14px; text-decoration:none; color:var(--text); font-size:14px; transition:border-color .15s, background .15s;
+  }
+  .contact-pill:hover{ border-color:var(--accent-2); background:var(--surface); }
+
+  /* ---------- Projects (area3) ---------- */
+  .proj-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:40px; }
+  .proj-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; transition:transform .18s, border-color .18s, box-shadow .18s;
+  }
+  .proj-card:hover{ transform:translateY(-4px); border-color:var(--accent); box-shadow:var(--shadow); }
+  .proj-cover{ height:132px; position:relative; overflow:hidden; }
+  .proj-cover svg{ width:100%; height:100%; }
+  .proj-tag{ position:absolute; top:12px; inset-inline-start:12px; font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; background:rgba(0,0,0,.45); color:#fff; padding:4px 9px; border-radius:20px; }
+  .proj-body{ padding:20px; display:flex; flex-direction:column; gap:12px; flex:1; }
+  .proj-body h3{ font-size:19px; }
+  .proj-body p{ color:var(--text-dim); font-size:14px; line-height:1.6; margin:0; flex:1; }
+  .proj-open{ align-self:flex-start; }
+
+  .video-block{ display:grid; grid-template-columns:1.6fr 1fr; gap:22px; margin-top:22px; align-items:stretch; }
+  .video-frame{ position:relative; width:100%; padding-top:56.25%; border-radius:14px; overflow:hidden; border:1px solid var(--border); background:var(--surface); }
+  .video-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  .video-side{ display:flex; flex-direction:column; justify-content:center; gap:16px; border:1px solid var(--border); border-radius:14px; padding:22px; background:var(--surface); }
+  .video-side p{ margin:0; color:var(--text-dim); font-size:14.5px; line-height:1.6; }
+  @media (max-width:920px){ .video-block{ grid-template-columns:1fr; } }
+
+  /* ---------- Skills (area4) ---------- */
+  .skills-block{ margin-top:8px; }
+  .skills-block + .skills-block{ margin-top:52px; }
+  .subhead{ font-size:14px; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.08em; color:var(--text-dim); margin-bottom:18px; }
+  .lang-chip-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .lang-chip{
+    font-family:var(--font-mono); font-size:13.5px; padding:9px 14px; border-radius:9px; border:1px solid var(--border); background:var(--surface); color:var(--text); position:relative;
+    text-decoration:none; display:inline-block; transition:border-color .15s, transform .15s;
+  }
+  .lang-chip:hover{ border-color:var(--accent-2); transform:translateY(-2px); }
+  .lang-chip.mine{ border-color:var(--accent); color:var(--accent); padding-inline-end:56px; }
+  .mine-badge{
+    position:absolute; inset-inline-end:6px; top:50%; transform:translateY(-50%); font-size:9.5px; letter-spacing:.04em; text-transform:uppercase;
+    background:var(--accent); color:var(--accent-ink); padding:2px 6px; border-radius:10px;
+  }
+  .spec-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:14px; }
+  .spec-card{ display:flex; gap:12px; align-items:flex-start; border:1px solid var(--border); border-radius:11px; padding:16px; background:var(--surface); }
+  .spec-icon{ width:36px; height:36px; border-radius:9px; background:var(--surface-2); display:flex; align-items:center; justify-content:center; color:var(--accent-2); flex-shrink:0; }
+  .spec-card h4{ font-size:14.5px; margin-bottom:2px; }
+  .spec-card p{ font-size:12px; color:var(--text-dim); margin:0; }
+
+  /* ---------- Footer ---------- */
+  footer{ border-top:1px solid var(--border); padding:40px 0 32px; }
+  .footer-inner{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; }
+  .footer-nav{ display:flex; gap:18px; flex-wrap:wrap; }
+  .footer-nav a{ text-decoration:none; color:var(--text-dim); font-size:13.5px; }
+  .footer-nav a:hover{ color:var(--accent); }
+  .footer-meta{ font-size:12.5px; color:var(--text-dim); font-family:var(--font-mono); text-align:end; }
+  .footer-social{ display:flex; gap:10px; }
+
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+  @media (max-width:920px){
+    .hero-top{ grid-template-columns:1fr; }
+    .about-grid{ grid-template-columns:1fr; }
+    .avatar{ width:120px; height:120px; font-size:36px; }
+    .proj-grid{ grid-template-columns:1fr; }
+    .mini-row{ grid-template-columns:1fr; }
+    nav.main-nav{ position:fixed; top:66px; inset-inline:0; background:var(--bg); border-bottom:1px solid var(--border); flex-direction:column; padding:10px; gap:2px;
+      transform:translateY(-8px); opacity:0; pointer-events:none; transition:all .18s; }
+    nav.main-nav.open{ transform:translateY(0); opacity:1; pointer-events:auto; }
+    nav.main-nav a{ padding:12px 14px; }
+    .menu-toggle{ display:flex; }
+    section{ padding:56px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#hero" class="brand"><span class="brand-mark">UN</span>TECK</a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#projects" data-i18n="nav_projects">Projects</a>
+      <a href="#apps" data-i18n="nav_apps">Apps</a>
+      <a href="#skills" data-i18n="nav_skills">Skills</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <button class="icon-btn" id="openDrawer" aria-label="Settings">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M4.3 12a7.7 7.7 0 0 1 .3-2.1L2.8 8.4l1.5-2.6 2.2.8a7.7 7.7 0 0 1 3.6-2.1L10.5 2h3l.4 2.5a7.7 7.7 0 0 1 3.6 2.1l2.2-.8 1.5 2.6-1.8 1.5a7.7 7.7 0 0 1 0 4.2l1.8 1.5-1.5 2.6-2.2-.8a7.7 7.7 0 0 1-3.6 2.1L13.5 22h-3l-.4-2.5a7.7 7.7 0 0 1-3.6-2.1l-2.2.8-1.5-2.6 1.8-1.5a7.7 7.7 0 0 1-.3-2.1Z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Settings">
+  <div class="drawer-head">
+    <h3 class="display" style="font-size:17px;" data-i18n="settings_title">Settings</h3>
+    <button class="icon-btn" id="closeDrawer" aria-label="Close">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div>
+      <div class="drawer-section-title" data-i18n="signin_label">Sign in for updates</div>
+      <div id="signinForm">
+        <div class="field"><label data-i18n="field_email">Email</label><input type="email" placeholder="you@example.com"></div>
+        <div class="field"><label data-i18n="field_password">Password</label><input type="password" placeholder="••••••••"></div>
+        <button class="btn btn-solid btn-block" id="signinBtn" data-i18n="settings_signin">Sign in</button>
+      </div>
+      <div id="signedInState" style="display:none;">
+        <p class="signed-in-note" data-i18n="signed_in_msg">Signed in — no new updates yet.</p>
+        <button class="btn btn-ghost btn-block" id="signoutBtn" data-i18n="signout_label">Sign out</button>
+      </div>
+    </div>
+    <div>
+      <div class="drawer-section-title" data-i18n="lang_label">Language</div>
+      <div class="lang-list" id="langList">
+        <div class="opt-row" data-lang="en"><span class="native">English</span><span class="localized"></span></div>
+        <div class="opt-row" data-lang="ar"><span class="native">العربية</span><span class="localized"></span></div>
+        <div class="opt-row" data-lang="ja"><span class="native">日本語</span><span class="localized"></span></div>
+        <div class="opt-row" data-lang="fr"><span class="native">Français</span><span class="localized"></span></div>
+      </div>
+    </div>
+    <div>
+      <div class="drawer-section-title" data-i18n="theme_label">Theme</div>
+      <div class="theme-list" id="themeList">
+        <div class="opt-row" data-theme-choice="dark"><span data-i18n="theme_dark">Dark</span></div>
+        <div class="opt-row" data-theme-choice="light"><span data-i18n="theme_light">Light</span></div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<main>
+
+  <!-- AREA 1: HERO -->
+  <section class="hero wrap" id="hero">
+    <div class="hero-top">
+      <div>
+        <div class="eyebrow" data-i18n="hero_eyebrow">UNTECK — build log</div>
+        <h1 data-i18n="hero_title">Hey, I'm Khalf.</h1>
+        <p class="lede" data-i18n="hero_subtitle">I build across almost the whole stack — and right now I'm building my own language to do it with one syntax.</p>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn btn-solid" data-i18n="cta_projects">See projects</a>
+          <a href="#skills" class="btn btn-ghost" data-i18n="cta_skills">See skills &amp; tools</a>
+        </div>
+      </div>
+      <div class="console">
+        <div class="console-bar"><span class="console-dot"></span><span class="console-dot"></span><span class="console-dot"></span></div>
+        <div class="console-body" id="consoleBody"></div>
+        <div class="console-note" data-i18n="console_note">One language, one prefix per domain — that's the idea behind UNL.</div>
+      </div>
+    </div>
+
+    <div class="mini-row">
+      <a class="mini-card" href="https://brahimkha959-spec.github.io/Unl-studio-/" target="_blank" rel="noopener">
+        <div class="mini-cover" style="background:linear-gradient(135deg,#3a2a05,#141821);"></div>
+        <h4>UNL</h4>
+        <p data-i18n="mini_unl">My own programming language, still in progress.</p>
+      </a>
+      <a class="mini-card" href="https://brahimkha959-spec.github.io/unteck_stories/" target="_blank" rel="noopener">
+        <div class="mini-cover" style="background:linear-gradient(135deg,#1c2b2a,#141821);"></div>
+        <h4>Unteck Strosi</h4>
+        <p data-i18n="mini_strosi">A platform for writing and publishing stories.</p>
+      </a>
+      <a class="mini-card" href="https://brahimkha959-spec.github.io/UK-COSMOS/" target="_blank" rel="noopener">
+        <div class="mini-cover" style="background:linear-gradient(135deg,#161c33,#141821);"></div>
+        <h4>UNTECK Cosmos</h4>
+        <p data-i18n="mini_cosmos">A visual encyclopedia of the universe.</p>
+      </a>
+      <a class="mini-card" href="https://brahimkha959-spec.github.io/GO-studio-/" target="_blank" rel="noopener">
+        <div class="mini-cover" style="background:linear-gradient(135deg,#241a33,#141821);"></div>
+        <h4>Go Studio</h4>
+        <p data-i18n="mini_gostudio">App store showcase for games created with Unteck 2GO and 3GO.</p>
+      </a>
+      <a class="mini-card" href="https://brahimkha959-spec.github.io/GO_engine/" target="_blank" rel="noopener">
+        <div class="mini-cover" style="background:linear-gradient(135deg,#1a2f24,#141821);"></div>
+        <h4>GO Engine</h4>
+        <p data-i18n="mini_goengine">Game engine tools and runtime environment.</p>
+      </a>
+    </div>
+
+    <div class="shelf-label" style="margin-top:56px;"><h3 data-i18n="tools_label">Tools in daily rotation</h3></div>
+    <div class="chip-row" id="toolsChipRow"></div>
+
+    <div class="guide-card">
+      <div>
+        <div class="shelf-label" style="margin-bottom:6px;"><h3 style="margin:0;" data-i18n="guides_label">Guides &amp; tutorials</h3></div>
+        <p style="margin:0;color:var(--text-dim);font-size:14px;" data-i18n="guides_soon">Writing these up soon — check back.</p>
+      </div>
+      <span class="soon-badge" data-i18n="soon_badge">Coming soon</span>
+    </div>
+  </section>
+
+  <!-- AREA 2: ABOUT -->
+  <section class="wrap reveal" id="about">
+    <div class="eyebrow" data-i18n="about_eyebrow">About</div>
+    <div class="about-grid">
+      <div>
+        <div class="avatar">KI</div>
+      </div>
+      <div>
+        <h2 class="about-name" data-i18n="about_name">Khalf Ibrahim Khalil</h2>
+        <div class="about-role" data-i18n="about_role">Independent developer</div>
+        <p class="about-bio" style="margin-top:22px;" data-i18n="about_bio">I'm 18 and I build software across the stack — front end, back end, mobile, a bit of AI, security, and more. My main project right now is UNL, a language I designed and built solo over three months, meant to cover most of these domains with one syntax and a namespace per field.</p>
+        <div class="drawer-section-title" style="margin-bottom:12px;" data-i18n="contact_label">Get in touch</div>
+        <div class="contact-row">
+          <a class="contact-pill" href="https://www.linkedin.com/in/brahim-kha-4a43193a9" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4z" opacity="0"/><path d="M6.5 9.5v8M6.5 6.6v.01M11 17.5v-5c0-1.6 1-2.8 2.7-2.8 1.6 0 2.3 1.1 2.3 2.8v5"/></svg>
+            LinkedIn
+          </a>
+          <a class="contact-pill" href="https://github.com/brahimkha959-spec" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-2.8 17.5c.4.1.6-.2.6-.4v-1.6c-2.5.5-3-1.1-3-1.1-.4-1-1-1.3-1-1.3-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .8 1.5 2.2 1 2.8.8.1-.6.3-1 .6-1.3-2-.2-4.1-1-4.1-4.4 0-1 .3-1.7.9-2.4-.1-.2-.4-1.2.1-2.5 0 0 .8-.2 2.6 1a9 9 0 0 1 4.8 0c1.8-1.2 2.6-1 2.6-1 .5 1.3.2 2.3.1 2.5.6.7.9 1.5.9 2.4 0 3.4-2.1 4.2-4.1 4.4.3.3.6.8.6 1.7v2.5c0 .2.2.5.6.4A9 9 0 0 0 12 3Z"/></svg>
+            GitHub
+          </a>
+          <a class="contact-pill" href="mailto:brahimkha959@gmail.com">
+            <svg class="icon" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
+            Email
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AREA 3: PROJECTS -->
+  <section class="wrap reveal" id="projects">
+    <div class="eyebrow" data-i18n="projects_eyebrow">Projects</div>
+    <h2 style="font-size:30px;" data-i18n="projects_title">What I've been building</h2>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#1a1200,#12151B 65%);">
+          <span class="proj-tag">UNL</span>
+          <svg viewBox="0 0 300 132" preserveAspectRatio="none"><path d="M0 100 L40 70 L80 92 L120 40 L160 66 L200 30 L240 58 L300 20 L300 132 L0 132 Z" fill="#FFB020" opacity="0.18"/><path d="M0 100 L40 70 L80 92 L120 40 L160 66 L200 30 L240 58 L300 20" fill="none" stroke="#FFB020" stroke-width="2"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>UNL Studio &amp; Language</h3>
+          <p data-i18n="proj1_desc">The programming language I'm building — one syntax for the front end, servers, AI, and security, called through domain namespaces like un.web or un.ai.</p>
+          <a class="btn btn-solid proj-open" href="https://brahimkha959-spec.github.io/Unl-studio-/" target="_blank" rel="noopener" data-i18n="proj1_btn">Open UNL</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#0d211d,#12151B 65%);">
+          <span class="proj-tag">Strosi</span>
+          <svg viewBox="0 0 300 132"><rect x="40" y="24" width="80" height="100" rx="4" fill="none" stroke="#4FD1C5" stroke-width="2"/><rect x="130" y="40" width="80" height="84" rx="4" fill="none" stroke="#4FD1C5" stroke-width="2" opacity="0.6"/><rect x="220" y="56" width="60" height="68" rx="4" fill="none" stroke="#4FD1C5" stroke-width="2" opacity="0.35"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>Unteck Stories</h3>
+          <p data-i18n="proj2_desc">An Arabic-first platform for writing and publishing stories — accounts, a library, likes, the works.</p>
+          <a class="btn btn-solid proj-open" href="https://brahimkha959-spec.github.io/unteck_stories/" target="_blank" rel="noopener" data-i18n="proj2_btn">Open Strosi</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#0f1330,#12151B 65%);">
+          <span class="proj-tag">Cosmos</span>
+          <svg viewBox="0 0 300 132"><circle cx="60" cy="66" r="26" fill="none" stroke="#8891A0" stroke-width="2"/><circle cx="150" cy="66" r="40" fill="none" stroke="#4FD1C5" stroke-width="2"/><circle cx="150" cy="66" r="52" fill="none" stroke="#4FD1C5" stroke-width="1" opacity="0.4"/><circle cx="250" cy="40" r="6" fill="#FFB020"/><circle cx="230" cy="90" r="3" fill="#8891A0"/><circle cx="270" cy="100" r="2" fill="#8891A0"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>UNTECK Cosmos</h3>
+          <p data-i18n="proj3_desc">A visual encyclopedia of the universe — planets, the Milky Way, black holes, and nebulae.</p>
+          <a class="btn btn-solid proj-open" href="https://brahimkha959-spec.github.io/UK-COSMOS/" target="_blank" rel="noopener" data-i18n="proj3_btn">Open Cosmos</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#2a1030,#12151B 65%);">
+          <span class="proj-tag">Pixel</span>
+          <svg viewBox="0 0 300 132"><g fill="#ED93B1" opacity="0.5"><rect x="30" y="30" width="18" height="18"/><rect x="52" y="30" width="18" height="18"/><rect x="30" y="52" width="18" height="18"/><rect x="74" y="52" width="18" height="18"/><rect x="52" y="74" width="18" height="18"/></g></svg>
+        </div>
+        <div class="proj-body">
+          <h3>UNTECK Pixel</h3>
+          <p data-i18n="proj4_desc">A pixel-art focused site — small visual experiments and graphics.</p>
+          <a class="btn btn-solid proj-open" href="https://brahimkha959-spec.github.io/UK_PIXEL/" target="_blank" rel="noopener" data-i18n="proj4_btn">Open Pixel</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#0f2a30,#12151B 65%);">
+          <span class="proj-tag">Montage</span>
+          <svg viewBox="0 0 300 132"><rect x="20" y="26" width="70" height="80" rx="3" fill="none" stroke="#4FD1C5" stroke-width="2"/><rect x="100" y="26" width="70" height="80" rx="3" fill="none" stroke="#4FD1C5" stroke-width="2" opacity="0.7"/><rect x="180" y="26" width="70" height="80" rx="3" fill="none" stroke="#4FD1C5" stroke-width="2" opacity="0.4"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>UK Montage</h3>
+          <p data-i18n="proj5_desc">A media and photo-montage tool for putting visuals together.</p>
+          <a class="btn btn-solid proj-open" href="https://brahimkha959-spec.github.io/UK_montage/" target="_blank" rel="noopener" data-i18n="proj5_btn">Open Montage</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#1a2a10,#12151B 65%);">
+          <span class="proj-tag">Helper</span>
+          <svg viewBox="0 0 300 132"><circle cx="150" cy="66" r="34" fill="none" stroke="#FFB020" stroke-width="2"/><path d="M138 66h24M150 54v24" stroke="#FFB020" stroke-width="2"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>UNTECK Helper</h3>
+          <p data-i18n="proj6_desc">A small utility site with day-to-day tools and helpers.</p>
+          <a class="btn btn-solid proj-open" href="https://brahimkha959-spec.github.io/UNTECK_HELPER/" target="_blank" rel="noopener" data-i18n="proj6_btn">Open Helper</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#102a2a,#12151B 65%);">
+          <span class="proj-tag">Salary</span>
+          <svg viewBox="0 0 300 132"><rect x="40" y="40" width="220" height="60" rx="6" fill="none" stroke="#4FD1C5" stroke-width="2"/><path d="M60 70h40M120 70h60" stroke="#4FD1C5" stroke-width="2"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>UK Salary</h3>
+          <p data-i18n="proj_salary_desc">Income and salary calculation dashboard and tracker.</p>
+          <a class="btn btn-solid proj-open" href="https://brahimkha959-spec.github.io/UK-SALARY/" target="_blank" rel="noopener" data-i18n="proj_salary_btn">Open Salary</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#2a1a10,#12151B 65%);">
+          <span class="proj-tag">Studio</span>
+          <svg viewBox="0 0 300 132"><path d="M40 90 L110 50 L170 80 L260 30" fill="none" stroke="#FFB020" stroke-width="2"/><circle cx="260" cy="30" r="5" fill="#FFB020"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>Go Studio</h3>
+          <p data-i18n="proj_gostudio_desc">App store showcase featuring games created with Unteck tools.</p>
+          <a class="btn btn-solid proj-open" href="https://brahimkha959-spec.github.io/GO-studio-/" target="_blank" rel="noopener" data-i18n="proj_gostudio_btn">Open Go Studio</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#21102a,#12151B 65%);">
+          <span class="proj-tag">Engine</span>
+          <svg viewBox="0 0 300 132"><circle cx="150" cy="66" r="30" fill="none" stroke="#ED93B1" stroke-width="2"/><path d="M150 26v10M150 96v10M110 66h10M180 66h10" stroke="#ED93B1" stroke-width="2"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>GO Engine</h3>
+          <p data-i18n="proj_goengine_desc">Game engine tools and runtime environment.</p>
+          <a class="btn btn-solid proj-open" href="https://brahimkha959-spec.github.io/GO_engine/" target="_blank" rel="noopener" data-i18n="proj_goengine_btn">Open Engine</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#2a2010,#12151B 65%);">
+          <span class="proj-tag">Math</span>
+          <svg viewBox="0 0 300 132"><path d="M60 40 L150 92 L240 40" fill="none" stroke="#FFB020" stroke-width="2"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>Cute Math</h3>
+          <p data-i18n="proj_cutemath_desc">Interactive math learning tools and puzzles.</p>
+          <a class="btn btn-solid proj-open" href="https://brahimkha959-spec.github.io/Cute_math/" target="_blank" rel="noopener" data-i18n="proj_cutemath_btn">Open Math</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#10202a,#12151B 65%);">
+          <span class="proj-tag">Music</span>
+          <svg viewBox="0 0 300 132"><path d="M90 90V40l120-15v50" fill="none" stroke="#4FD1C5" stroke-width="2"/><circle cx="90" cy="90" r="10" fill="#4FD1C5"/><circle cx="210" cy="75" r="10" fill="#4FD1C5"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>Music B</h3>
+          <p data-i18n="proj_musicb_desc">Music player, audio experiments and soundboards.</p>
+          <a class="btn btn-solid proj-open" href="https://brahimkha959-spec.github.io/Music-b/" target="_blank" rel="noopener" data-i18n="proj_musicb_btn">Open Music B</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#2a1010,#12151B 65%);">
+          <span class="proj-tag">Sinking</span>
+          <svg viewBox="0 0 300 132"><path d="M30 80 Q150 40 270 80" fill="none" stroke="#FF6B6B" stroke-width="2"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>A World Sinking</h3>
+          <p data-i18n="proj_sinking_desc">Atmospheric narrative and interactive experience.</p>
+          <a class="btn btn-solid proj-open" href="https://brahimkha959-spec.github.io/A_world_sinking-/" target="_blank" rel="noopener" data-i18n="proj_sinking_btn">Open Experience</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#1c1c1c,#12151B 65%);">
+          <span class="proj-tag">Aimless</span>
+          <svg viewBox="0 0 300 132"><circle cx="150" cy="66" r="20" fill="none" stroke="#8891A0" stroke-width="2"/><path d="M150 26v80M110 66h80" stroke="#8891A0" stroke-width="1" stroke-dasharray="4 4"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>Aimless</h3>
+          <p data-i18n="proj_aimless_desc">Experimental project and sandbox playground.</p>
+          <a class="btn btn-solid proj-open" href="https://brahimkha959-spec.github.io/aimless/" target="_blank" rel="noopener" data-i18n="proj_aimless_btn">Open Aimless</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="shelf-label" style="margin-top:52px;"><h3 data-i18n="video_label">Latest video</h3></div>
+    <div class="video-block">
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/-VN1i4dwlNk" title="UNL video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-side">
+        <p data-i18n="video_desc">A quick look at UNL — the idea and the editor.</p>
+        <a class="btn btn-ghost" href="https://www.youtube.com/@brahimKha-unl" target="_blank" rel="noopener" data-i18n="video_channel_cta">Watch more on YouTube</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AREA: APPS -->
+  <section class="wrap reveal" id="apps">
+    <div class="eyebrow" data-i18n="apps_eyebrow">Apps</div>
+    <h2 style="font-size:30px;" data-i18n="apps_title">Android builds</h2>
+    <div class="proj-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-top:40px;">
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#101c2a,#12151B 65%);">
+          <span class="proj-tag">.apk</span>
+          <svg viewBox="0 0 300 132"><rect x="120" y="20" width="60" height="92" rx="10" fill="none" stroke="#4FD1C5" stroke-width="2"/><path d="M140 100h20" stroke="#4FD1C5" stroke-width="2"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>UNL Editor</h3>
+          <p data-i18n="app1_desc">An Android editor built for writing and testing UNL code on the go.</p>
+          <a class="btn btn-solid proj-open" href="UNL editor.apk" download data-i18n="download_btn">Download APK</a>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#1c1030,#12151B 65%);">
+          <span class="proj-tag">.apk</span>
+          <svg viewBox="0 0 300 132"><rect x="120" y="20" width="60" height="92" rx="10" fill="none" stroke="#FFB020" stroke-width="2"/><path d="M140 100h20" stroke="#FFB020" stroke-width="2"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>Unteck AP</h3>
+          <p data-i18n="app2_desc">Creates APK apps.</p>
+          <a class="btn btn-solid proj-open" href="./Unteck_apk.apk" download data-i18n="download_btn">Download APK</a>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#0d2130,#12151B 65%);">
+          <span class="proj-tag">.apk</span>
+          <svg viewBox="0 0 300 132"><rect x="120" y="20" width="60" height="92" rx="10" fill="none" stroke="#4FD1C5" stroke-width="2"/><path d="M140 100h20" stroke="#4FD1C5" stroke-width="2"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>Unteck Online</h3>
+          <p data-i18n="app3_desc">The connected, online version of the Unteck app.</p>
+          <a class="btn btn-solid proj-open" href="./Unteck_online.apk" download data-i18n="download_btn">Download APK</a>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-cover" style="background:linear-gradient(150deg,#301030,#12151B 65%);">
+          <span class="proj-tag">.apk</span>
+          <svg viewBox="0 0 300 132"><rect x="120" y="20" width="60" height="92" rx="10" fill="none" stroke="#ED93B1" stroke-width="2"/><path d="M140 100h20" stroke="#ED93B1" stroke-width="2"/></svg>
+        </div>
+        <div class="proj-body">
+          <h3>Unteck AI</h3>
+          <p data-i18n="app4_desc">The AI-powered Unteck app.</p>
+          <a class="btn btn-solid proj-open" href="./Unteck_ai.apk" download data-i18n="download_btn">Download APK</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AREA 4: SKILLS -->
+  <section class="wrap reveal" id="skills">
+    <div class="eyebrow" data-i18n="skills_eyebrow">Languages &amp; focus</div>
+
+    <div class="skills-block">
+      <div class="subhead" data-i18n="languages_title">Languages</div>
+      <div class="lang-chip-row" id="langChips"></div>
+    </div>
+
+    <div class="skills-block">
+      <div class="subhead" data-i18n="specialties_title">What I work on</div>
+      <div class="spec-grid" id="specGrid"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <nav class="footer-nav">
+      <a href="#hero">UNTECK</a>
+      <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#projects" data-i18n="nav_projects">Projects</a>
+      <a href="#apps" data-i18n="nav_apps">Apps</a>
+      <a href="#skills" data-i18n="nav_skills">Skills</a>
+    </nav>
+    <div class="footer-social">
+      <a class="icon-btn" href="https://github.com/brahimkha959-spec" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-2.8 17.5c.4.1.6-.2.6-.4v-1.6c-2.5.5-3-1.1-3-1.1-.4-1-1-1.3-1-1.3-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .8 1.5 2.2 1 2.8.8.1-.6.3-1 .6-1.3-2-.2-4.1-1-4.1-4.4 0-1 .3-1.7.9-2.4-.1-.2-.4-1.2.1-2.5 0 0 .8-.2 2.6 1a9 9 0 0 1 4.8 0c1.8-1.2 2.6-1 2.6-1 .5 1.3.2 2.3.1 2.5.6.7.9 1.5.9 2.4 0 3.4-2.1 4.2-4.1 4.4.3.3.6.8.6 1.7v2.5c0 .2.2.5.6.4A9 9 0 0 0 12 3Z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://www.linkedin.com/in/brahim-kha-4a43193a9" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M6.5 9.5v8M6.5 6.6v.01M11 17.5v-5c0-1.6 1-2.8 2.7-2.8 1.6 0 2.3 1.1 2.3 2.8v5"/></svg>
+      </a>
+      <a class="icon-btn" href="mailto:brahimkha959@gmail.com" aria-label="Email">
+        <svg class="icon" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
+      </a>
+      <a class="icon-btn" href="https://www.youtube.com/@brahimKha-unl" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="6.5" width="18" height="11" rx="3"/><path d="M10.5 9.3v5.4l4.5-2.7z" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
+    <div class="footer-meta">
+      <div data-i18n="footer_copy">© 2026 Khalf Ibrahim Khalil — UNTECK</div>
+      <div data-i18n="footer_made">One dev, one language, way too many tabs open.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const I18N = {
+en:{
+  nav_about:"About", nav_projects:"Projects", nav_apps:"Apps", nav_skills:"Skills",
+  signin_label:"Sign in for updates", lang_label:"Language", theme_label:"Theme",
+  field_email:"Email", field_password:"Password", settings_signin:"Sign in",
+  signed_in_msg:"Signed in — no new updates yet.", signout_label:"Sign out",
+  settings_title:"Settings", theme_dark:"Dark", theme_light:"Light",
+  hero_eyebrow:"UNTECK — build log", hero_title:"Hey, I'm Khalf.",
+  hero_subtitle:"I build across almost the whole stack — and right now I'm building my own language to do it with one syntax.",
+  cta_projects:"See projects", cta_skills:"See skills & tools",
+  console_note:"One language, one prefix per domain — that's the idea behind UNL.",
+  mini_unl:"My own programming language, still in progress.",
+  mini_strosi:"A platform for writing and publishing stories.",
+  mini_cosmos:"A visual encyclopedia of the universe.",
+  mini_gostudio:"App store showcase for games created with Unteck 2GO and 3GO.",
+  mini_goengine:"Game engine tools and runtime environment.",
+  tools_label:"Tools in daily rotation", guides_label:"Guides & tutorials",
+  guides_soon:"Writing these up soon — check back.", soon_badge:"Coming soon",
+  about_eyebrow:"About", about_name:"Khalf Ibrahim Khalil", about_role:"Independent developer",
+  about_bio:"I'm 18 and I build software across the stack — front end, back end, mobile, a bit of AI, security, and more. My main project right now is UNL, a language I designed and built solo over three months, meant to cover most of these domains with one syntax and a namespace per field.",
+  contact_label:"Get in touch",
+  projects_eyebrow:"Projects", projects_title:"What I've been building",
+  proj1_desc:"The programming language I'm building — one syntax for the front end, servers, AI, and security, called through domain namespaces like un.web or un.ai.",
+  proj1_btn:"Open UNL",
+  proj2_desc:"An Arabic-first platform for writing and publishing stories — accounts, a library, likes, the works.",
+  proj2_btn:"Open Strosi",
+  proj3_desc:"A visual encyclopedia of the universe — planets, the Milky Way, black holes, and nebulae.",
+  proj3_btn:"Open Cosmos",
+  proj4_desc:"A pixel-art focused site — small visual experiments and graphics.",
+  proj4_btn:"Open Pixel",
+  proj5_desc:"A media and photo-montage tool for putting visuals together.",
+  proj5_btn:"Open Montage",
+  proj6_desc:"A small utility site with day-to-day tools and helpers.",
+  proj6_btn:"Open Helper",
+  proj_salary_desc:"Income and salary calculation dashboard and tracker.",
+  proj_salary_btn:"Open Salary",
+  proj_gostudio_desc:"App store showcase featuring games created with Unteck tools.",
+  proj_gostudio_btn:"Open Go Studio",
+  proj_goengine_desc:"Game engine tools and runtime environment.",
+  proj_goengine_btn:"Open Engine",
+  proj_cutemath_desc:"Interactive math learning tools and puzzles.",
+  proj_cutemath_btn:"Open Math",
+  proj_musicb_desc:"Music player, audio experiments and soundboards.",
+  proj_musicb_btn:"Open Music B",
+  proj_sinking_desc:"Atmospheric narrative and interactive experience.",
+  proj_sinking_btn:"Open Experience",
+  proj_aimless_desc:"Experimental project and sandbox playground.",
+  proj_aimless_btn:"Open Aimless",
+  apps_eyebrow:"Apps", apps_title:"Android builds",
+  app1_desc:"An Android editor built for writing and testing UNL code on the go.",
+  app2_desc:"Creates APK apps.",
+  app3_desc:"The connected, online version of the Unteck app.",
+  app4_desc:"The AI-powered Unteck app.",
+  download_btn:"Download APK",
+  skills_eyebrow:"Languages & focus", languages_title:"Languages", specialties_title:"What I work on",
+  video_label:"Latest video", video_desc:"A quick look at UNL — the idea and the editor.", video_channel_cta:"Watch more on YouTube",
+  footer_copy:"© 2026 Khalf Ibrahim Khalil — UNTECK", footer_made:"One dev, one language, way too many tabs open.",
+  specialties:["Front end","Back end","Android (APK) builds","AI & machine learning","Cybersecurity","Data analysis","Systems & desktop programming","Internet of Things (IoT)","Networking & APIs","Games"],
+  specialty_desc:["Interfaces people click on","Servers, logic & data","Packaging apps for Android","Models that learn from data","Keeping systems safe","Making sense of numbers","Native apps for the desktop","Devices that talk to each other","Wiring services together","Interactive & fun to break"]
+},
+ar:{
+  nav_about:"من أنا", nav_projects:"مشاريع", nav_apps:"تطبيقات", nav_skills:"اللغات والاختصاص",
+  signin_label:"تسجيل الدخول للأخبار", lang_label:"اللغة", theme_label:"المظهر",
+  field_email:"البريد الإلكتروني", field_password:"كلمة المرور", settings_signin:"تسجيل الدخول",
+  signed_in_msg:"تم تسجيل الدخول — لا توجد أخبار جديدة بعد.", signout_label:"تسجيل الخروج",
+  settings_title:"الإعدادات", theme_dark:"مظلم", theme_light:"مضيء",
+  hero_eyebrow:"UNTECK — سجل البناء", hero_title:"أهلاً، أنا خالف.",
+  hero_subtitle:"أبني في أغلب طبقات البرمجة تقريبًا — وأبني حاليًا لغتي الخاصة لأفعل ذلك بصياغة واحدة.",
+  cta_projects:"شاهد المشاريع", cta_skills:"شاهد المهارات والأدوات",
+  console_note:"لغة واحدة، وبادئة واحدة لكل مجال — هذه هي فكرة UNL.",
+  mini_unl:"لغة البرمجة الخاصة بي، ما زالت قيد التطوير.",
+  mini_strosi:"منصة لكتابة القصص ونشرها.",
+  mini_cosmos:"موسوعة بصرية عن الكون.",
+  mini_gostudio:"منصة عرض تطبيقات الألعاب لـ Unteck.",
+  mini_goengine:"أدوات محرك الألعاب وبيئة التشغيل.",
+  tools_label:"أدوات أستعملها يوميًا", guides_label:"شروحات ودروس",
+  guides_soon:"قيد الكتابة حاليًا — عودوا لاحقًا.", soon_badge:"قريبًا",
+  about_eyebrow:"من أنا", about_name:"خالف إبراهيم خليل", about_role:"مطور مستقل",
+  about_bio:"عمري 18 سنة، وأبرمج في أغلب طبقات التقنية: الواجهة، الخادم، تطبيقات الجوال، وقليل من الذكاء الاصطناعي والأمن السيبراني وغيرها. مشروعي الحالي هو UNL، لغة برمجة صممتها وبنيتها بمفردي خلال ثلاثة أشهر، تهدف لتغطية أغلب هذه المجالات بصياغة واحدة، ووسيط خاص بكل مجال.",
+  contact_label:"تواصل معي",
+  projects_eyebrow:"مشاريع", projects_title:"أشياء بنيتها",
+  proj1_desc:"اللغة البرمجية التي أبنيها — صياغة واحدة للواجهة والخادم والذكاء الاصطناعي والأمن السيبراني، تُستدعى عبر وسطاء مثل un.web أو un.ai.",
+  proj1_btn:"افتح UNL",
+  proj2_desc:"منصة عربية لكتابة القصص ونشرها — حسابات، مكتبة، إعجابات، وكل التفاصيل.",
+  proj2_btn:"افتح Strosi",
+  proj3_desc:"موسوعة بصرية عن الكون — الكواكب، درب التبان، الثقوب السوداء، والسدم.",
+  proj3_btn:"افتح Cosmos",
+  proj4_desc:"موقع مخصص لفن البكسل — تجارب وأعمال رسومية صغيرة.",
+  proj4_btn:"افتح Pixel",
+  proj5_desc:"أداة لتركيب الصور والمونتاج المرئي.",
+  proj5_btn:"افتح Montage",
+  proj6_desc:"موقع صغير يحتوي أدوات مساعدة يومية.",
+  proj6_btn:"افتح Helper",
+  proj_salary_desc:"لوحة تتبع وحساب الرواتب والدخل.",
+  proj_salary_btn:"افتح الراتب",
+  proj_gostudio_desc:"معرض متجر التطبيقات للألعاب التي تم إنشاؤها باستخدام أدوات Unteck.",
+  proj_gostudio_btn:"افتح Go Studio",
+  proj_goengine_desc:"أدوات محرك الألعاب وبيئة التشغيل.",
+  proj_goengine_btn:"افتح Engine",
+  proj_cutemath_desc:"أدوات وألغاز تفاعلية لتعلم الرياضيات.",
+  proj_cutemath_btn:"افتح الرياضيات",
+  proj_musicb_desc:"مشغل موسيقى، تجارب صوتية ولوحات صوتية.",
+  proj_musicb_btn:"افتح Music B",
+  proj_sinking_desc:"قصة وتجربة تفاعلية ذات طابع جوي.",
+  proj_sinking_btn:"افتح التجربة",
+  proj_aimless_desc:"مشروع تجريبي وساحة تفاعلية حرة.",
+  proj_aimless_btn:"افتح Aimless",
+  apps_eyebrow:"تطبيقات", apps_title:"تطبيقات أندرويد",
+  app1_desc:"محرر أندرويد لكتابة واختبار كود UNL أثناء التنقل.",
+  app2_desc:"يصنع تطبيقات APK.",
+  app3_desc:"النسخة المتصلة عبر الإنترنت من تطبيق Unteck.",
+  app4_desc:"تطبيق Unteck المدعوم بالذكاء الاصطناعي.",
+  download_btn:"تحميل APK",
+  skills_eyebrow:"اللغات والاختصاص", languages_title:"لغات البرمجة", specialties_title:"مجالات العمل",
+  video_label:"آخر فيديو", video_desc:"جولة سريعة عن UNL — الفكرة والمحرر.", video_channel_cta:"شاهد المزيد على يوتيوب",
+  footer_copy:"© 2026 خالف إبراهيم خليل — UNTECK", footer_made:"مطور واحد، لغة واحدة، وتبويبات كثيرة جدًا مفتوحة.",
+  specialties:["الواجهة الأمامية","الواجهة الخلفية","صناعة تطبيقات APK","الذكاء الاصطناعي وتعلم الآلة","الأمن السيبراني","تحليل البيانات","برمجة الأنظمة وسطح المكتب","إنترنت الأشياء","الشبكات والـ APIs","الألعاب"],
+  specialty_desc:["واجهات يتفاعل معها الناس","خوادم ومنطق وبيانات","تحزيم التطبيقات لأندرويد","نماذج تتعلم من البيانات","حماية الأنظمة","فهم الأرقام والبيانات","تطبيقات أصلية لسطح المكتب","أجهزة تتحدث مع بعضها","ربط الخدمات ببعضها","تفاعلية وممتعة للتجربة"]
+},
+ja:{
+  nav_about:"私について", nav_projects:"プロジェクト", nav_apps:"アプリ", nav_skills:"言語と専門分野",
+  signin_label:"更新情報のサインイン", lang_label:"言語", theme_label:"テーマ",
+  field_email:"メールアドレス", field_password:"パスワード", settings_signin:"サインイン",
+  signed_in_msg:"サインイン済み — 新しい更新はまだありません。", signout_label:"サインアウト",
+  settings_title:"設定", theme_dark:"ダーク", theme_light:"ライト",
+  hero_eyebrow:"UNTECK — 開発ログ", hero_title:"こんにちは、Khalfです。",
+  hero_subtitle:"ほぼすべての開発領域でものを作っています。今は、それを1つの構文でできるようにする自作言語を開発中です。",
+  cta_projects:"プロジェクトを見る", cta_skills:"スキルとツールを見る",
+  console_note:"1つの言語、分野ごとに1つの接頭辞 — それがUNLの発想です。",
+  mini_unl:"開発中の自作プログラミング言語。",
+  mini_strosi:"物語を書いて公開するためのプラットフォーム。",
+  mini_cosmos:"宇宙のビジュアル百科事典。",
+  mini_gostudio:"Unteckツール製ゲームのアプリストア.",
+  mini_goengine:"ゲームエンジンツールとランタイム。",
+  tools_label:"日常的に使うツール", guides_label:"ガイド・チュートリアル",
+  guides_soon:"近日公開予定です。", soon_badge:"近日公開",
+  about_eyebrow:"私について", about_name:"Khalf Ibrahim Khalil", about_role:"個人開発者",
+  about_bio:"18歳で、フロントエンド、バックエンド、モバイル、少しのAIやセキュリティなど、幅広い分野で開発しています。現在の主なプロジェクトはUNLという言語で、3か月かけて一人で設計・開発しました。1つの構文と分野ごとの名前空間で、多くの領域をカバーすることを目指しています。",
+  contact_label:"連絡先",
+  projects_eyebrow:"プロジェクト", projects_title:"作ったもの",
+  proj1_desc:"開発中のプログラミング言語。フロントエンド、サーバー、AI、セキュリティを1つの構文で扱い、un.webやun.aiのような名前空間で呼び出します。",
+  proj1_btn:"UNLを開く",
+  proj2_desc:"アラビア語圏向けの物語投稿プラットフォーム。アカウント、ライブラリ、いいね機能などを備えています。",
+  proj2_btn:"Strosiを開く",
+  proj3_desc:"宇宙のビジュアル百科事典 — 惑星、天の川、ブラックホール、星雲。",
+  proj3_btn:"Cosmosを開く",
+  proj4_desc:"ピクセルアートに特化したサイト — 小さなビジュアル実験やグラフィック。",
+  proj4_btn:"Pixelを開く",
+  proj5_desc:"画像を組み合わせるためのメディア・モンタージュツール。",
+  proj5_btn:"Montageを開く",
+  proj6_desc:"日常的なツールを集めた小さなユーティリティサイト。",
+  proj6_btn:"Helperを開く",
+  proj_salary_desc:"給与計算・管理ダッシュボード。",
+  proj_salary_btn:"給与を見る",
+  proj_gostudio_desc:"Unteckツールで作られたゲームのショーケース。",
+  proj_gostudio_btn:"Go Studioを開く",
+  proj_goengine_desc:"ゲームエンジンツールとランタイム。",
+  proj_goengine_btn:"Engineを開く",
+  proj_cutemath_desc:"インタラクティブな数学学習ツール。",
+  proj_cutemath_btn:"Mathを開く",
+  proj_musicb_desc:"音楽プレイヤーとオーディオ実験。",
+  proj_musicb_btn:"Music Bを開く",
+  proj_sinking_desc:"雰囲気のあるインタラクティブストーリー。",
+  proj_sinking_btn:"体験を開く",
+  proj_aimless_desc:"実験的プロジェクトとサンドボックス。",
+  proj_aimless_btn:"Aimlessを開く",
+  apps_eyebrow:"アプリ", apps_title:"Androidビルド",
+  app1_desc:"外出先でUNLコードを書いてテストするためのAndroidエディタ。",
+  app2_desc:"APKアプリを作成します。",
+  app3_desc:"オンライン接続版のUnteckアプリ。",
+  app4_desc:"AIを搭載したUnteckアプリ。",
+  download_btn:"APKをダウンロード",
+  skills_eyebrow:"言語と専門分野", languages_title:"プログラミング言語", specialties_title:"専門分野",
+  video_label:"最新動画", video_desc:"UNLのアイデアとエディタを簡単に紹介します。", video_channel_cta:"YouTubeでもっと見る",
+  footer_copy:"© 2026 Khalf Ibrahim Khalil — UNTECK", footer_made:"開発者一人、言語一つ、開きすぎたタブ多数。",
+  specialties:["フロントエンド","バックエンド","Android(APK)開発","AI・機械学習","サイバーセキュリティ","データ分析","システム・デスクトップ開発","IoT(モノのインターネット)","ネットワークとAPI","ゲーム開発"],
+  specialty_desc:["人が操作する画面","サーバーとロジックとデータ","Android向けにパッケージ化","データから学習するモデル","システムを安全に保つ","数字の意味を読み解く","デスクトップ向けネイティブアプリ","機器同士の通信","サービス同士をつなぐ","作って遊べるゲーム"]
+},
+fr:{
+  nav_about:"À propos", nav_projects:"Projets", nav_apps:"Applications", nav_skills:"Langages et spécialités",
+  signin_label:"Connexion aux actus", lang_label:"Langue", theme_label:"Thème",
+  field_email:"E-mail", field_password:"Mot de passe", settings_signin:"Se connecter",
+  signed_in_msg:"Connecté — aucune nouveauté pour l'instant.", signout_label:"Se déconnecter",
+  settings_title:"Paramètres", theme_dark:"Sombre", theme_light:"Clair",
+  hero_eyebrow:"UNTECK — journal de bord", hero_title:"Salut, je suis Khalf.",
+  hero_subtitle:"Je développe sur presque toute la stack — et je construis mon propre langage pour le faire avec une seule syntaxe.",
+  cta_projects:"Voir les projets", cta_skills:"Voir compétences et outils",
+  console_note:"Un seul langage, un préfixe par domaine — c'est l'idée derrière UNL.",
+  mini_unl:"Mon propre langage de programmation, encore en cours.",
+  mini_strosi:"Une plateforme pour écrire et publier des histoires.",
+  mini_cosmos:"Une encyclopédie visuelle de l'univers.",
+  mini_gostudio:"Vitrine de jeux créés avec les outils Unteck.",
+  mini_goengine:"Outils de moteur de jeu et environnement d'exécution.",
+  tools_label:"Outils du quotidien", guides_label:"Guides et tutoriels",
+  guides_soon:"En cours de rédaction — revenez bientôt.", soon_badge:"Bientôt",
+  about_eyebrow:"À propos", about_name:"Khalf Ibrahim Khalil", about_role:"Développeur indépendant",
+  about_bio:"J'ai 18 ans et je développe sur toute la stack : front-end, back-end, mobile, un peu d'IA et de sécurité, entre autres. Mon projet principal est UNL, un langage que j'ai conçu et construit seul en trois mois, pensé pour couvrir la plupart de ces domaines avec une seule syntaxe et un espace de noms par domaine.",
+  contact_label:"Me contacter",
+  projects_eyebrow:"Projets", projects_title:"Ce que j'ai construit",
+  proj1_desc:"Le langage de programmation que je développe — une seule syntaxe pour le front-end, les serveurs, l'IA et la sécurité, appelée via des espaces de noms comme un.web ou un.ai.",
+  proj1_btn:"Ouvrir UNL",
+  proj2_desc:"Une plateforme arabophone pour écrire et publier des histoires — comptes, bibliothèque, likes, et plus.",
+  proj2_btn:"Ouvrir Strosi",
+  proj3_desc:"Une encyclopédie visuelle de l'univers — planètes, Voie lactée, trous noirs, nébuleuses.",
+  proj3_btn:"Ouvrir Cosmos",
+  proj4_desc:"Un site dédié au pixel art — petites expériences visuelles et graphismes.",
+  proj4_btn:"Ouvrir Pixel",
+  proj5_desc:"Un outil de montage photo et médias pour assembler des visuels.",
+  proj5_btn:"Ouvrir Montage",
+  proj6_desc:"Un petit site utilitaire avec des outils du quotidien.",
+  proj6_btn:"Ouvrir Helper",
+  proj_salary_desc:"Tableau de bord de calcul et suivi des salaires.",
+  proj_salary_btn:"Ouvrir Salaire",
+  proj_gostudio_desc:"Vitrine d'applications et jeux créés avec les outils Unteck.",
+  proj_gostudio_btn:"Ouvrir Go Studio",
+  proj_goengine_desc:"Outils de moteur de jeu et environnement d'exécution.",
+  proj_goengine_btn:"Ouvrir Engine",
+  proj_cutemath_desc:"Outils d'apprentissage des mathématiques interactifs.",
+  proj_cutemath_btn:"Ouvrir Maths",
+  proj_musicb_desc:"Lecteur de musique et expériences audio.",
+  proj_musicb_btn:"Ouvrir Music B",
+  proj_sinking_desc:"Expérience narrative et interactive.",
+  proj_sinking_btn:"Ouvrir Expérience",
+  proj_aimless_desc:"Projet expérimental et bac à sable.",
+  proj_aimless_btn:"Ouvrir Aimless",
+  apps_eyebrow:"Applications", apps_title:"Builds Android",
+  app1_desc:"Un éditeur Android pour écrire et tester du code UNL en déplacement.",
+  app2_desc:"Crée des applications APK.",
+  app3_desc:"La version connectée en ligne de l'application Unteck.",
+  app4_desc:"L'application Unteck propulsée par l'IA.",
+  download_btn:"Télécharger l'APK",
+  skills_eyebrow:"Langages et spécialités", languages_title:"Langages de programmation", specialties_title:"Domaines de travail",
+  video_label:"Dernière vidéo", video_desc:"Un aperçu rapide d'UNL — l'idée et l'éditeur.", video_channel_cta:"Voir plus sur YouTube",
+  footer_copy:"© 2026 Khalf Ibrahim Khalil — UNTECK", footer_made:"Un développeur, un langage, beaucoup trop d'onglets ouverts.",
+  specialties:["Front-end","Back-end","Création d'APK Android","IA et machine learning","Cybersécurité","Analyse de données","Systèmes et bureau","Internet des objets (IoT)","Réseaux et API","Jeux vidéo"],
+  specialty_desc:["Interfaces que l'on manipule","Serveurs, logique et données","Empaqueter des apps Android","Modèles qui apprennent des données","Protéger les systèmes","Donner du sens aux chiffres","Applications natives de bureau","Objets qui se parlent entre eux","Relier les services entre eux","Interactifs et amusants à casser"]
+}
+};
+
+const LANG_NAMES = {
+  en:{ en:"English", ar:"Arabic", ja:"Japanese", fr:"French" },
+  ar:{ en:"الإنجليزية", ar:"العربية", ja:"اليابانية", fr:"الفرنسية" },
+  ja:{ en:"英語", ar:"アラビア語", ja:"日本語", fr:"フランス語" },
+  fr:{ en:"Anglais", ar:"Arabe", ja:"Japonais", fr:"Français" }
+};
+
+const RTL_LANGS = new Set(["ar"]);
+const LANGUAGES = ["HTML","CSS","JS","SCSS","XML","Kotlin","Python","Java","Lua","PHP","MySQL","SQLite","GDScript","TypeScript"];
+const UNL_URL = "https://brahimkha959-spec.github.io/Unl-studio-/";
+const LANG_URLS = {
+  "HTML":"https://developer.mozilla.org/en-US/docs/Web/HTML",
+  "CSS":"https://developer.mozilla.org/en-US/docs/Web/CSS",
+  "JS":"https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+  "SCSS":"https://sass-lang.com/",
+  "XML":"https://developer.mozilla.org/en-US/docs/Web/XML",
+  "Kotlin":"https://kotlinlang.org/",
+  "Python":"https://www.python.org/",
+  "Java":"https://dev.java/",
+  "Lua":"https://www.lua.org/",
+  "PHP":"https://www.php.net/",
+  "MySQL":"https://www.mysql.com/",
+  "SQLite":"https://www.sqlite.org/",
+  "GDScript":"https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/index.html",
+  "TypeScript":"https://www.typescriptlang.org/",
+  "UNL": UNL_URL
+};
+const SPEC_ICONS = [
+ '<path d="M4 6h16v12H4z"/><path d="M8 10l2 2-2 2M13 14h3"/>',
+ '<path d="M4 4h16v16H4z"/><path d="M8 9v6M12 9v6M16 9v6"/>',
+ '<rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 18h6"/>',
+ '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/>',
+ '<path d="M12 3l7 3v6c0 4.5-3 7-7 9-4-2-7-4.5-7-9V6z"/>',
+ '<path d="M4 19V9M9 19V5M14 19v-7M19 19v-11"/>',
+ '<rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4"/>',
+ '<circle cx="12" cy="12" r="2.5"/><circle cx="4" cy="6" r="1.6"/><circle cx="20" cy="6" r="1.6"/><circle cx="4" cy="18" r="1.6"/><circle cx="20" cy="18" r="1.6"/><path d="M6 7.2 10.3 10.6M18 7.2 13.7 10.6M6 16.8 10.3 13.4M18 16.8 13.7 13.4"/>',
+ '<circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7.6 7.3 10.5 16.2M16.4 7.3 13.5 16.2M8 6h8"/>',
+ '<rect x="4" y="15" width="16" height="5" rx="1"/><path d="M8 15V9a4 4 0 0 1 8 0v6"/>'
+];
+
+let state = { lang:"en", theme:"dark", signedIn:false };
+
+function applyLang(lang){
+  state.lang = lang;
+  const dict = I18N[lang];
+  document.documentElement.setAttribute("lang", lang);
+  document.documentElement.setAttribute("dir", RTL_LANGS.has(lang) ? "rtl" : "ltr");
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    if(dict[key]!==undefined) el.textContent = dict[key];
+  });
+  document.querySelectorAll(".opt-row[data-lang]").forEach(el=>{
+    el.setAttribute("aria-pressed", el.getAttribute("data-lang")===lang ? "true":"false");
+  });
+  renderSpecialties(dict);
+  renderConsole(dict);
+  renderLangOptions(lang);
+}
+
+function renderLangOptions(currentLang){
+  document.querySelectorAll(".opt-row[data-lang]").forEach(el=>{
+    const code = el.getAttribute("data-lang");
+    const localizedEl = el.querySelector(".localized");
+    if(localizedEl){
+      localizedEl.textContent = code === currentLang ? "" : (LANG_NAMES[currentLang] ? LANG_NAMES[currentLang][code] : "");
+    }
+  });
+}
+
+function applyTheme(theme){
+  state.theme = theme;
+  document.documentElement.setAttribute("data-theme", theme);
+  document.querySelectorAll(".opt-row[data-theme-choice]").forEach(el=>{
+    el.setAttribute("aria-pressed", el.getAttribute("data-theme-choice")===theme ? "true":"false");
+  });
+}
+
+function renderSpecialties(dict){
+  const grid = document.getElementById("specGrid");
+  grid.innerHTML = "";
+  dict.specialties.forEach((name,i)=>{
+    const card = document.createElement("div");
+    card.className = "spec-card";
+    card.innerHTML = `<div class="spec-icon"><svg class="icon" viewBox="0 0 24 24">${SPEC_ICONS[i]||""}</svg></div>
+      <div><h4>${name}</h4><p>${dict.specialty_desc[i]||""}</p></div>`;
+    grid.appendChild(card);
+  });
+}
+
+function renderLangChips(){
+  const row = document.getElementById("langChips");
+  row.innerHTML = "";
+  LANGUAGES.forEach(l=>{
+    const c = document.createElement("a");
+    c.className = "lang-chip";
+    c.href = LANG_URLS[l] || "#";
+    c.target = "_blank";
+    c.rel = "noopener";
+    c.textContent = l;
+    row.appendChild(c);
+  });
+  const unl = document.createElement("a");
+  unl.className = "lang-chip mine";
+  unl.href = UNL_URL;
+  unl.target = "_blank";
+  unl.rel = "noopener";
+  unl.innerHTML = "UNL<span class='mine-badge'>mine</span>";
+  row.appendChild(unl);
+}
+
+function renderToolsChips(){
+  const row = document.getElementById("toolsChipRow");
+  row.innerHTML = "";
+  ["HTML","CSS","JS","TypeScript","Python","Kotlin","UNL"].forEach(t=>{
+    const c = document.createElement("a");
+    c.className = "chip";
+    c.href = LANG_URLS[t] || "#";
+    c.target = "_blank";
+    c.rel = "noopener";
+    c.textContent = t;
+    row.appendChild(c);
+  });
+}
+
+const NS_LINES = ["un.web →","un.ai →","un.sec →","un.iot →","un.db →","un.gui →"];
+let consoleIdx = 0, consoleTimer;
+function renderConsole(dict){
+  clearInterval(consoleTimer);
+  const body = document.getElementById("consoleBody");
+  function draw(){
+    body.innerHTML = "";
+    for(let i=0;i<3;i++){
+      const idx = (consoleIdx+i) % NS_LINES.length;
+      const line = document.createElement("div");
+      line.className = "console-line";
+      line.innerHTML = `<span class="p">${NS_LINES[idx]}</span>`;
+      body.appendChild(line);
+    }
+    const cursor = document.createElement("span");
+    cursor.className = "console-cursor";
+    body.appendChild(cursor);
+  }
+  draw();
+  consoleTimer = setInterval(()=>{ consoleIdx = (consoleIdx+1)%NS_LINES.length; draw(); }, 2200);
+}
+
+// Drawer
+const drawer = document.getElementById("drawer"), scrim = document.getElementById("scrim");
+document.getElementById("openDrawer").addEventListener("click", ()=>{ drawer.classList.add("open"); scrim.classList.add("open"); });
+document.getElementById("closeDrawer").addEventListener("click", closeDrawer);
+scrim.addEventListener("click", closeDrawer);
+function closeDrawer(){ drawer.classList.remove("open"); scrim.classList.remove("open"); }
+
+document.querySelectorAll(".opt-row[data-lang]").forEach(el=>{
+  el.addEventListener("click", ()=>applyLang(el.getAttribute("data-lang")));
+});
+document.querySelectorAll(".opt-row[data-theme-choice]").forEach(el=>{
+  el.addEventListener("click", ()=>applyTheme(el.getAttribute("data-theme-choice")));
+});
+
+// mobile nav
+const menuToggle = document.getElementById("menuToggle"), mainNav = document.getElementById("mainNav");
+menuToggle.addEventListener("click", ()=>{
+  const open = mainNav.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", open ? "true":"false");
+});
+mainNav.querySelectorAll("a").forEach(a=>a.addEventListener("click", ()=>{ mainNav.classList.remove("open"); }));
+
+// sign-in mock (front-end only, no backend / no persistence)
+document.getElementById("signinBtn").addEventListener("click", ()=>{
+  document.getElementById("signinForm").style.display = "none";
+  document.getElementById("signedInState").style.display = "block";
+  state.signedIn = true;
+});
+document.getElementById("signoutBtn").addEventListener("click", ()=>{
+  document.getElementById("signinForm").style.display = "block";
+  document.getElementById("signedInState").style.display = "none";
+  state.signedIn = false;
+});
+
+renderLangChips();
+renderToolsChips();
+applyLang("en");
+applyTheme("dark");
+
+// Smooth scroll-spy: highlight the nav link matching the section in view
+const navLinks = [...document.querySelectorAll('nav.main-nav a, .footer-nav a[href^="#"]')];
+const sections = ["hero","about","projects","apps","skills"].map(id=>document.getElementById(id)).filter(Boolean);
+const spy = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id = "#"+entry.target.id;
+      navLinks.forEach(a=>{
+        a.classList.toggle("active", a.getAttribute("href")===id);
+      });
+    }
+  });
+}, { rootMargin:"-40% 0px -55% 0px", threshold:0 });
+sections.forEach(s=>spy.observe(s));
+
+// Smooth reveal-on-scroll for sections below the fold
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("in");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold:0.12 });
+document.querySelectorAll(".reveal").forEach(el=>revealObserver.observe(el));
+</script>
+</body>
+</html>
